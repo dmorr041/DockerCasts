@@ -3,7 +3,10 @@ const redis = require('redis');
 
 const app = express();
 
-const client = redis.createClient();
+const client = redis.createClient({
+  host: 'redis-server',  // You can reference the redis server by its name in the docker-compose.yml file
+  port: 6379
+});
 client.set('visits', 0);
 
 const CONTAINER_PORT = 8081;
