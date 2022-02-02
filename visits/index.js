@@ -1,5 +1,6 @@
 const express = require('express');
 const redis = require('redis');
+const process = require('process');
 
 const app = express();
 
@@ -13,6 +14,7 @@ const CONTAINER_PORT = 8081;
 
 app.get('/', (req, res) => {
   client.get('visits', (err, visits) => {
+    if (err) { process.exit(1); }
     res.send(`Number of visits is ${visits}`);
     client.set('visits', parseInt(visits, 10) + 1);
   });

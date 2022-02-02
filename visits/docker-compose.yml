@@ -3,6 +3,7 @@ services:
   redis-server:
     image: 'redis'  # base image of redis - this is equivalent to running 'docker run redis' which would pull the base image from docker hub and start redis server
   node-app:
+    restart: on-failure
     build: .  # build takes a path to the Dockerfile you're trying to build from
     ports:
       - "4001:8081"   # A - in .yml files indicates an array
