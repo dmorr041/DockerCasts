@@ -8,6 +8,6 @@ spec:
   ports:
     - port: 3050          # Port other pods use to connect to Running pod
       targetPort: 3000    # Running pod's port
-      nodePort: 31515     # Port you and I use when accessing the running Pod's containers
+      nodePort: 31515     # Port you and I use when accessing the running Pod's containers (localhost:31515/)
   selector:
     component: web

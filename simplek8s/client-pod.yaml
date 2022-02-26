@@ -4,9 +4,9 @@ metadata:
   name: client-pod
   labels:
     component: web
-  spec:
-    containers:
-      - name: client
-        image: stephengrider/multi-client   # Assumes the ready to go image is on DockerHub
-        ports:
-          - containerPort: 3000     # Corresponds to the port the client uses
+spec:
+  containers:
+    - name: client
+      image: stephengrider/multi-client   # Assumes the ready to go image is on DockerHub
+      ports:
+        - containerPort: 3000     # Corresponds to the port the client uses
