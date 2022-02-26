@@ -1,0 +1,12 @@
+apiVersion: v1    # Limits what objects we can use for the rest of this document
+kind: Pod     # kind represents the type of object we want to make - in this case a Pod, which is used to run a container
+metadata:
+  name: client-pod
+  labels:
+    component: web
+  spec:
+    containers:
+      - name: client
+        image: stephengrider/multi-client   # Assumes the ready to go image is on DockerHub
+        ports:
+          - containerPort: 3000     # Corresponds to the port the client uses

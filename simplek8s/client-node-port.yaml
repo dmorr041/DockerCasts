@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service     # kind represents the type of object we want to make - in this case a Service, which sets up networking for our cluster
+metadata:
+  name: client-node-port
+spec:
+  type: NodePort    # Specifies we want the NodePort Service (NodePort, ClusterIP, LoadBalancer, and Ingress are the 4 services)
+  # NodePort used for enabling developers to connect with the running application - DEV only
+  ports:
+    - port: 3050          # Port other pods use to connect to Running pod
+      targetPort: 3000    # Running pod's port
+      nodePort: 31515     # Port you and I use when accessing the running Pod's containers
+  selector:
+    component: web
