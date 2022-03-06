@@ -17,3 +17,22 @@ spec:
           image: algorhythm92/multi-server
           ports:
             - containerPort: 5000
+          env:
+            - name: REDIS_HOST
+              value: redis-cluster-ip-service
+            - name: REDIS_PORT
+              value: '6379'
+            - name: PG_USER
+              value: postgres
+            - name: PG_HOST
+              value: postgres-cluster-ip-service  # metadata.name in postgres-cluster-ip-service.yml
+            - name: PG_PORT
+              value: '5432'
+            - name: PG_DATABASE
+              value: postgres
+            - name: PG_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  # This is the name you used when running kubectl create secret generic <name> --from-literal KEY=VALUE
+                  name: pg-password
+                  key: PG_PASSWORD

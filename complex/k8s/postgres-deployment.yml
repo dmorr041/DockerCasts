@@ -27,3 +27,10 @@ spec:
             - name: postgres-storage
               mountPath: /var/lib/postgresql/data # Default location for PSQL mount (google this)
               subPath: postgres # Data will go into /var/lib/postgresql/data/postgres inside container
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  # These correspond to what you set up manually with kubectl create secret
+                  name: pg-password
+                  key: PG_PASSWORD
