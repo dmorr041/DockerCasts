@@ -3,8 +3,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: database-persistent-volume-claim
 spec:
+# Specifies that this PVC can be used by a single node (vs. readable by many nodes)
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
+    # Specifies that we need 2GB on the node that uses this PVC
       storage: 2Gi

@@ -12,8 +12,18 @@ spec:
       labels:
         component: postgres
     spec:
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            # This has to be the same name as the PVC name in the PVC config
+            claimName: database-persistent-volume-claim
       containers:
         - name: postgres
           image: postgres
           ports:
             - containerPort: 5432
+          volumeMounts:
+            # This needs to be the same as the name of the volume above that is tied to the PVC
+            - name: postgres-storage
+              mountPath: /var/lib/postgresql/data # Default location for PSQL mount (google this)
+              subPath: postgres # Data will go into /var/lib/postgresql/data/postgres inside container
